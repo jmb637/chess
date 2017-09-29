@@ -1,0 +1,13 @@
+body {
+  font-size: 20px;
+  text-align: center;
+}
+
+button {
+  font-size: 18px;
+}
+
+#container {
+  margin: auto;
+  padding-top: 20px;
+}
