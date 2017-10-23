@@ -68,7 +68,7 @@ function generateBestMove(boardID, depth = null) {
   }
 
   const worstTopMove = topMoves[topMoves.length - 1];
-  if (bestMove.score - worstTopMove.score < 30) {
+  if (bestMove.score - worstTopMove.score < 10) {
     return topMoves[Math.floor(Math.random() * topMoves.length)];
   } else {
     return bestMove;
@@ -184,12 +184,14 @@ function minimax(
 function getPieceValue(pos, color, type) {
   let value = 0;
 
-  if (pos.row >= 2 && pos.row <= 5) {
-    value += 2;
-  }
-
-  if (pos.column >= 2 && pos.column <= 5) {
-    value += 2;
+  if (color === pieceColor.WHITE) {
+    if (pos.row >= 1) {
+      ++value;
+    }
+  } else {
+    if (pos.row <= 6) {
+      ++value;
+    }
   }
 
   switch (type) {
@@ -202,6 +204,16 @@ function getPieceValue(pos, color, type) {
       break;
     }
     case pieceType.KNIGHT: {
+      if (color === pieceColor.WHITE) {
+        if (pos.row >= 1) {
+          ++value;
+        }
+      } else {
+        if (pos.row <= 6) {
+          ++value;
+        }
+      }
+
       value += 30;
       break;
     }
@@ -210,18 +222,16 @@ function getPieceValue(pos, color, type) {
       break;
     }
     case pieceType.PAWN: {
-      if (color === pieceColor.WHITE) {
-        if (pos.row >= 3) {
-          ++value;
+      if (pos.column >= 1 && pos.column <= 6) {
+        if (color === pieceColor.WHITE) {
+          if (pos.row >= 3) {
+            value += 2;
+          }
+        } else {
+          if (pos.row <= 4) {
+            value += 2;
+          }
         }
-      } else {
-        if (pos.row <= 4) {
-          ++value;
-        }
-      }
-
-      if (value === 5) {
-        value += 2;
       }
 
       value += 10;
