@@ -16,8 +16,9 @@ function runTests() {
   testCastling();
   testEnPassant();
   testPawnPromotion();
+  testOpenerFalsePositives();
 
-  console.log('All tests passed.');
+  console.log('All chess tests passed.');
 }
 
 function assertEqual(actual, expected) {
@@ -213,6 +214,63 @@ function testPawnPromotion() {
   const blackPromotionType = board.getPieceType(boardID, position.getPosition(0, 0));
   assertEqual(blackPromotionColor, pieceColor.BLACK);
   assertEqual(blackPromotionType, pieceType.KNIGHT);
+
+  board.freeBoardID(boardID);
+}
+
+function testOpenerFalsePositives() {
+  const boardID = board.getBoardID();
+  board.initializeBoard(boardID);
+
+  assertEqual(simpleTryMove(boardID, 0, 0, 1, 0), status.INVALID);
+  assertEqual(simpleTryMove(boardID, 0, 1, 1, 1), status.INVALID);
+
+  assertEqual(simpleTryMove(boardID, 0, 2, 1, 2), status.INVALID);
+  assertEqual(simpleTryMove(boardID, 0, 3, 1, 3), status.INVALID);
+
+  assertEqual(simpleTryMove(boardID, 0, 4, 1, 4), status.INVALID);
+  assertEqual(simpleTryMove(boardID, 0, 5, 1, 5), status.INVALID);
+
+  assertEqual(simpleTryMove(boardID, 0, 6, 1, 6), status.INVALID);
+  assertEqual(simpleTryMove(boardID, 0, 7, 1, 7), status.INVALID);
+
+  assertEqual(simpleTryMove(boardID, 0, 0, 2, 0), status.INVALID);
+  assertEqual(simpleTryMove(boardID, 0, 1, 2, 1), status.INVALID);
+
+  assertEqual(simpleTryMove(boardID, 0, 2, 2, 2), status.INVALID);
+  assertEqual(simpleTryMove(boardID, 0, 3, 2, 3), status.INVALID);
+
+  assertEqual(simpleTryMove(boardID, 0, 4, 2, 4), status.INVALID);
+  assertEqual(simpleTryMove(boardID, 0, 5, 2, 5), status.INVALID);
+
+  assertEqual(simpleTryMove(boardID, 0, 6, 2, 6), status.INVALID);
+  assertEqual(simpleTryMove(boardID, 0, 7, 2, 7), status.INVALID);
+
+  assertEqual(simpleTryMove(boardID, 1, 3, 3, 3), status.STANDARD);
+  assertEqual(simpleTryMove(boardID, 7, 0, 6, 0), status.INVALID);
+
+  assertEqual(simpleTryMove(boardID, 7, 1, 6, 1), status.INVALID);
+  assertEqual(simpleTryMove(boardID, 7, 2, 6, 2), status.INVALID);
+
+  assertEqual(simpleTryMove(boardID, 7, 3, 6, 3), status.INVALID);
+  assertEqual(simpleTryMove(boardID, 7, 4, 6, 4), status.INVALID);
+
+  assertEqual(simpleTryMove(boardID, 7, 5, 6, 5), status.INVALID);
+  assertEqual(simpleTryMove(boardID, 7, 6, 6, 6), status.INVALID);
+
+  assertEqual(simpleTryMove(boardID, 7, 7, 6, 7), status.INVALID);
+  assertEqual(simpleTryMove(boardID, 7, 0, 5, 0), status.INVALID);
+
+  assertEqual(simpleTryMove(boardID, 7, 1, 5, 1), status.INVALID);
+  assertEqual(simpleTryMove(boardID, 7, 2, 5, 2), status.INVALID);
+
+  assertEqual(simpleTryMove(boardID, 7, 3, 5, 3), status.INVALID);
+  assertEqual(simpleTryMove(boardID, 7, 4, 5, 4), status.INVALID);
+
+  assertEqual(simpleTryMove(boardID, 7, 5, 5, 5), status.INVALID);
+  assertEqual(simpleTryMove(boardID, 7, 6, 5, 6), status.INVALID);
+
+  assertEqual(simpleTryMove(boardID, 7, 7, 5, 7), status.INVALID);
 
   board.freeBoardID(boardID);
 }

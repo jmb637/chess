@@ -2,7 +2,7 @@
   "name": "chess",
   "version": "1.0.0",
   "scripts": {
-    "test": "node ./test/test.js",
+    "test": "node ./test/chessTest.js",
     "start": "node ./build.js"
   },
   "dependencies": {
