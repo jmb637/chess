@@ -4,21 +4,28 @@
 <head>
     <meta charset="utf-8">
     <link rel="icon" href="data:,">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B"
+        crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="style.css">
     <title>Chess</title>
     <script src="chess.js"></script>
 </head>
 
 <body>
-    <div id="container">
-        <canvas id="canvas" width="800" height="800"></canvas>
-        <div>
-            <p id="status"></p>
-            <button id="reset">Reset</button>
-            <button id="change_color">Change color</button>
-            <p>
-                <a href="https://github.com/jmb637/chess">https://github.com/jmb637/chess</a>
-            </p>
+    <div id="container" class="container-fluid">
+        <div class="mx-auto mt-3">
+            <canvas id="canvas" width="800" height="800"></canvas>
+            <div class="row my-3 pb-1">
+                <h4 id="status" class="col-6 my-auto"></h4>
+                <div class="col-6 my-auto text-right font-weight-bold">
+                    <button id="reset" class="btn btn-primary">Reset</button>
+                    <button id="change_color" class="btn btn-secondary">Change color</button>
+                </div>
+            </div>
+            <hr>
+            <div class="text-center">
+                <a class="text-secondary font-weight-bold" href="https://github.com/jmb637/chess">https://github.com/jmb637/chess</a>
+            </div>
         </div>
     </div>
     <div style="display: none">

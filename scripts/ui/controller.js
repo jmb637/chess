@@ -57,24 +57,24 @@ function updateStatusLabel() {
   let text = "";
   switch (boardStatus) {
     case status.CHECK: {
-      text += turnColorText + ' is in check.\n';
+      text += '<b>' + turnColorText + '</b> is in check.\n';
     }
     case status.STANDARD: {
-      text += turnColorText + '\'s turn to move...';
+      text += '<b>' + turnColorText + '\'s</b> turn to move...';
       break;
     }
     case status.CHECKMATE: {
-      text += turnColorText + ' has been checkmated.\n';
-      text += oppositeTurnColorText + ' wins!';
+      text += '<b>' + turnColorText + '</b> has been checkmated.\n';
+      text += '<b>' + oppositeTurnColorText + '</b> wins!';
       break;
     }
     case status.STALEMATE: {
-      text += 'Stalemate.';
+      text += '<b>Stalemate.</b>';
       break;
     }
   }
 
-  statusLabel.innerText = text;
+  statusLabel.innerHTML = text;
 }
 
 function getPositionFromCoords(canvas, clientX, clientY) {
